@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>X69X BOT V3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#050508;
+  --s1:#0a0a12;
+  --s2:#0f0f1a;
+  --p:#7c3aed;
+  --p2:#a855f7;
+  --c:#06b6d4;
+  --g:#10b981;
+  --r:#ef4444;
+  --gold:#f59e0b;
+  --pink:#ec4899;
+  --txt:#f8fafc;
+  --muted:#64748b;
+  --border:rgba(124,58,237,0.18);
+  --card:rgba(10,10,20,0.7);
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:'Inter',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ─── BACKGROUND ─── */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-blob{position:absolute;border-radius:50%;filter:blur(120px);animation:blobMove 20s ease-in-out infinite alternate}
+.b1{width:70vw;height:70vw;background:radial-gradient(circle,rgba(124,58,237,.22),transparent 65%);top:-20%;left:-25%;animation-duration:22s}
+.b2{width:60vw;height:60vw;background:radial-gradient(circle,rgba(6,182,212,.18),transparent 65%);bottom:-25%;right:-20%;animation-duration:28s}
+.b3{width:50vw;height:50vw;background:radial-gradient(circle,rgba(236,72,153,.14),transparent 65%);top:35%;right:5%;animation-duration:18s}
+@keyframes blobMove{from{transform:translate(0,0) scale(1)}to{transform:translate(5%,8%) scale(1.12)}}
+
+/* ─── PARTICLES ─── */
+#particles{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.pt{
+  position:absolute;bottom:-10px;border-radius:50%;
+  animation:riseUp linear infinite;opacity:0}
+@keyframes riseUp{
+  0%  {transform:translateY(0) scale(.4);opacity:0}
+  10% {opacity:1}
+  90% {opacity:.6}
+  100%{transform:translateY(-110vh) scale(1.3);opacity:0}
+}
+/* shooting stars */
+#stars{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.star{
+  position:absolute;top:0;width:2px;height:80px;
+  background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.7),rgba(255,255,255,0));
+  border-radius:100%;animation:shoot linear infinite;opacity:0}
+@keyframes shoot{
+  0%  {transform:translateY(-100px) rotate(15deg);opacity:0}
+  5%  {opacity:.8}
+  40% {opacity:.4}
+  100%{transform:translateY(110vh) rotate(15deg);opacity:0}
+}
+
+.grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(124,58,237,.04)1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.04)1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
+
+/* ─── LAYOUT ─── */
+.wrap{position:relative;z-index:10;max-width:1100px;margin:0 auto;padding:24px 20px 80px}
+
+/* ─── NAV ─── */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px;margin-bottom:64px;
+  background:rgba(5,5,8,0.6);backdrop-filter:blur(24px);
+  border:1px solid var(--border);border-radius:100px;
+  position:sticky;top:16px;z-index:100;
+  box-shadow:0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.04);
+}
+.nav-brand{font-size:15px;font-weight:800;letter-spacing:.04em;
+  background:linear-gradient(120deg,#fff 0%,#c4b5fd 50%,var(--c) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;animation:dotPulse 2s infinite}
+@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+#navBadge{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 16px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.06em;
+  border:1px solid;transition:all .4s;backdrop-filter:blur(8px)}
+
+/* ─── HERO ─── */
+.hero{text-align:center;padding:40px 0 70px;position:relative}
+.hero-avatar{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:110px;height:110px;border-radius:28px;font-size:52px;
+  background:linear-gradient(135deg,var(--p),var(--c),var(--pink));
+  box-shadow:0 0 60px rgba(124,58,237,.5),0 24px 48px rgba(0,0,0,.6);
+  animation:float 6s ease-in-out infinite;margin-bottom:28px;
+  position:relative}
+.hero-avatar::before{content:'';position:absolute;inset:-2px;border-radius:30px;
+  background:linear-gradient(135deg,var(--p),var(--c),var(--pink));
+  z-index:-1;filter:blur(16px);opacity:.6;animation:spin 8s linear infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(3deg)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.avatar-status{
+  position:absolute;bottom:8px;right:8px;
+  width:18px;height:18px;border-radius:50%;
+  border:3px solid var(--bg);
+  box-shadow:0 0 12px currentColor;
+  transition:all .4s}
+.hero h1{
+  font-size:clamp(38px,7vw,72px);font-weight:900;
+  background:linear-gradient(135deg,#fff 10%,#c4b5fd 45%,var(--c) 75%,var(--pink) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  letter-spacing:-.03em;line-height:1.05;margin-bottom:18px;
+  animation:shimmerTitle 4s ease-in-out infinite}
+@keyframes shimmerTitle{0%,100%{filter:brightness(1)}50%{filter:brightness(1.15)}}
+.hero-sub{color:var(--muted);font-size:17px;max-width:520px;margin:0 auto 40px;line-height:1.7}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ─── BUTTONS ─── */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:13px 28px;border-radius:100px;font-size:14px;font-weight:700;
+  text-decoration:none;border:none;cursor:pointer;transition:all .28s;position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);
+  transform:translateX(-100%);transition:transform .5s}
+.btn:hover::after{transform:translateX(100%)}
+.btn-primary{
+  background:linear-gradient(135deg,var(--p),#5b21b6);color:#fff;
+  box-shadow:0 4px 24px rgba(124,58,237,.45)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(124,58,237,.65)}
+.btn-ghost{
+  background:rgba(255,255,255,.04);color:var(--txt);
+  border:1px solid var(--border)}
+.btn-ghost:hover{border-color:rgba(124,58,237,.5);color:var(--p2);transform:translateY(-3px);
+  box-shadow:0 0 24px rgba(124,58,237,.2)}
+
+/* ─── SECTION LABEL ─── */
+.sec-label{
+  display:flex;align-items:center;gap:12px;
+  font-size:11px;font-weight:800;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.sec-label::before{content:'//';color:var(--p);font-family:'JetBrains Mono',monospace;font-size:13px}
+.sec-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+
+/* ─── STATS ─── */
+.stats-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:40px}
+@media(max-width:640px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+.stat-box{
+  background:var(--card);backdrop-filter:blur(16px);
+  border:1px solid var(--border);border-radius:20px;
+  padding:24px 20px;text-align:center;
+  transition:all .35s;cursor:default;position:relative;overflow:hidden}
+.stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--p),var(--c),var(--pink));opacity:0;transition:.3s}
+.stat-box:hover{transform:translateY(-6px);border-color:rgba(124,58,237,.4);
+  box-shadow:0 20px 40px rgba(0,0,0,.35)}
+.stat-box:hover::before{opacity:1}
+.stat-ico{font-size:28px;margin-bottom:10px;display:block;
+  filter:drop-shadow(0 0 8px rgba(124,58,237,.4))}
+.stat-val{
+  font-size:2.2rem;font-weight:800;font-family:'JetBrains Mono',monospace;
+  background:linear-gradient(135deg,#fff,#a78bfa,var(--c));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;margin-bottom:6px}
+.stat-lbl{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+
+/* ─── INFO PILLS ─── */
+.info-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:12px;margin-bottom:40px}
+.info-pill{
+  background:var(--card);backdrop-filter:blur(12px);
+  border:1px solid var(--border);border-radius:14px;
+  padding:14px 16px;display:flex;align-items:center;gap:10px;
+  transition:all .3s}
+.info-pill:hover{border-color:rgba(124,58,237,.4);transform:translateX(4px)}
+.pill-dot{width:7px;height:7px;border-radius:50%;background:var(--g);
+  box-shadow:0 0 8px var(--g);flex-shrink:0;animation:dotPulse 2.5s infinite}
+.pill-key{font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:2px}
+.pill-val{font-size:13px;font-weight:700;font-family:'JetBrains Mono',monospace;
+  background:linear-gradient(135deg,#fff,var(--c));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ─── SESSION CARD ─── */
+.session-card{
+  background:var(--card);backdrop-filter:blur(20px);
+  border:1px solid rgba(124,58,237,.3);border-radius:24px;
+  overflow:hidden;margin-bottom:40px;
+  box-shadow:0 0 60px rgba(124,58,237,.07)}
+.sc-head{
+  padding:22px 28px;
+  background:linear-gradient(135deg,rgba(124,58,237,.1),transparent);
+  border-bottom:1px solid rgba(255,255,255,.05);
+  display:flex;align-items:center;gap:14px}
+.sc-head-icon{font-size:28px;filter:drop-shadow(0 0 10px rgba(124,58,237,.6))}
+.sc-title{font-size:16px;font-weight:800}
+.sc-sub{font-size:12px;color:var(--muted);margin-top:3px}
+.sc-body{padding:24px 28px;display:flex;flex-direction:column;gap:16px}
+.field-label{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:6px;display:block}
+.field-inp{
+  width:100%;background:rgba(0,0,0,.4);
+  border:1px solid rgba(255,255,255,.08);border-radius:14px;
+  padding:12px 16px;color:var(--txt);
+  font-family:'JetBrains Mono',monospace;font-size:13px;
+  outline:none;transition:all .25s}
+.field-inp:focus{border-color:rgba(124,58,237,.6);box-shadow:0 0 0 3px rgba(124,58,237,.12)}
+textarea.field-inp{min-height:130px;resize:vertical;line-height:1.6}
+.sc-msg{padding:12px 16px;border-radius:12px;font-size:13px;font-weight:600;display:none}
+.sc-msg.ok{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);color:#6ee7b7}
+.sc-msg.err{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#fca5a5}
+.sc-btn{
+  background:linear-gradient(135deg,var(--p),#5b21b6);color:#fff;
+  border:none;border-radius:14px;padding:14px;font-size:14px;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:all .28s;position:relative;overflow:hidden}
+.sc-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(124,58,237,.5)}
+.sc-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+/* ─── FEATURES ─── */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px;margin-bottom:40px}
+.feat-card{
+  background:var(--card);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.06);border-radius:20px;
+  padding:24px;transition:all .3s;position:relative;overflow:hidden}
+.feat-card::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 80% 20%,rgba(124,58,237,.08),transparent 60%);
+  opacity:0;transition:.3s}
+.feat-card:hover{border-color:rgba(124,58,237,.35);transform:translateY(-4px);
+  box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.feat-card:hover::after{opacity:1}
+.feat-emo{font-size:30px;margin-bottom:14px;display:block;
+  filter:drop-shadow(0 0 10px rgba(124,58,237,.4))}
+.feat-card h3{font-size:16px;font-weight:800;margin-bottom:8px}
+.feat-card p{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* ─── STATUS BAR ─── */
+.status-bar{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  background:var(--card);backdrop-filter:blur(16px);
+  border:1px solid var(--border);border-radius:18px;
+  padding:18px 24px;margin-bottom:40px;position:relative;overflow:hidden}
+.status-bar::before{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--p),var(--c),transparent);
+  animation:scan 4s linear infinite}
+@keyframes scan{to{left:100%}}
+.sb-item{display:flex;align-items:center;gap:8px;font-size:13px;
+  padding:6px 12px;background:rgba(124,58,237,.06);
+  border:1px solid rgba(124,58,237,.1);border-radius:8px;flex:1;min-width:140px;
+  transition:.3s}
+.sb-item:hover{background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.25)}
+.sb-key{color:var(--muted);font-weight:600;font-size:11px;white-space:nowrap}
+.sb-val{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;color:var(--txt)}
+
+/* ─── FOOTER ─── */
+footer{text-align:center;padding-top:40px;border-top:1px solid var(--border);
+  color:var(--muted);font-size:13px;line-height:2;position:relative}
+footer::before{content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+  width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--p),transparent)}
+footer a{color:var(--p2);text-decoration:none;font-weight:600;transition:color .2s}
+footer a:hover{color:var(--c)}
+
+/* ─── SHIMMER ─── */
+.sk{display:inline-block;background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(124,58,237,.15) 50%,rgba(255,255,255,.04) 75%);
+  background-size:200% 100%;animation:sk 1.6s infinite;border-radius:6px;min-width:40px;height:.9em;vertical-align:middle}
+@keyframes sk{0%{background-position:200%}100%{background-position:-200%}}
+
+/* ─── REVEAL ─── */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  nav{padding:10px 16px;margin-bottom:36px;top:10px}
+  .hero{padding:24px 0 48px}
+  .hero h1{font-size:clamp(32px,10vw,52px)}
+  .feat-grid{grid-template-columns:1fr}
+  .sc-body,.sc-head{padding:18px}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .status-bar{gap:10px}
+}
+</style>
+</head>
+<body>
+
+<div class="bg">
+  <div class="bg-blob b1"></div>
+  <div class="bg-blob b2"></div>
+  <div class="bg-blob b3"></div>
+</div>
+<div class="grid"></div>
+<div id="particles"></div>
+<div id="stars"></div>
+
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav class="rv">
+    <div class="nav-brand" id="brandName">X69X BOT V3</div>
+    <div id="navBadge">
+      <div class="nav-dot" id="navDot"></div>
+      <span id="navTxt">CONNECTING</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero rv">
+    <div class="hero-avatar">
+      🤖
+      <div class="avatar-status" id="avatarStatus"></div>
+    </div>
+    <h1 id="heroTitle">X69X BOT V3</h1>
+    <p class="hero-sub">Next‑gen Facebook Messenger automation · AI commands · Auto‑healing core · Made by <strong style="color:#c4b5fd">Azadx69x</strong></p>
+    <div class="hero-actions">
+      <a href="/dashboard" class="btn btn-primary">🛸 Dashboard Portal</a>
+      <a href="https://github.com/ncazad/Azadx69x" target="_blank" class="btn btn-ghost">⌨️ Source Code</a>
+    </div>
+  </section>
+
+  <!-- SESSION -->
+  <div class="sec-label rv">Facebook Session</div>
+  <div class="session-card rv">
+    <div class="sc-head">
+      <div class="sc-head-icon">🔐</div>
+      <div>
+        <div class="sc-title">Set Facebook Session</div>
+        <div class="sc-sub">Paste your fbstate / cookies JSON to connect the bot to Messenger</div>
+      </div>
+    </div>
+    <div class="sc-body">
+      <div>
+        <label class="field-label">Admin Key <span style="color:rgba(100,116,139,.6)">(config.json → dashBoard.adminKey)</span></label>
+        <input type="password" id="keyInp" class="field-inp" placeholder="Enter your admin key" autocomplete="off"/>
+      </div>
+      <div>
+        <label class="field-label">Facebook Session JSON</label>
+        <textarea id="stateInp" class="field-inp" placeholder='[{"key":"c_user","value":"123..."},{"key":"xs","value":"abc..."}]'></textarea>
+      </div>
+      <div id="scMsg" class="sc-msg"></div>
+      <button id="scBtn" class="sc-btn" onclick="sendSession()">
+        <span id="scIco">💾</span><span id="scLbl">Save Session & Restart Bot</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- LIVE STATS -->
+  <div class="sec-label rv">Live Stats</div>
+  <div class="stats-row rv">
+    <div class="stat-box">
+      <span class="stat-ico">💬</span>
+      <div class="stat-val" id="sGroups"><span class="sk"></span></div>
+      <div class="stat-lbl">Groups</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-ico">👥</span>
+      <div class="stat-val" id="sUsers"><span class="sk"></span></div>
+      <div class="stat-lbl">Users</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-ico">⚙️</span>
+      <div class="stat-val" id="sCmds"><span class="sk"></span></div>
+      <div class="stat-lbl">Commands</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-ico">⏱️</span>
+      <div class="stat-val" id="sUp"><span class="sk"></span></div>
+      <div class="stat-lbl">Uptime</div>
+    </div>
+  </div>
+
+  <!-- INFO BAR -->
+  <div class="sec-label rv">System Info</div>
+  <div class="status-bar rv">
+    <div class="sb-item"><span class="sb-key">Prefix</span><span class="sb-val" id="iPrefix"><span class="sk" style="min-width:16px"></span></span></div>
+    <div class="sb-item"><span class="sb-key">Version</span><span class="sb-val" id="iVer"><span class="sk"></span></span></div>
+    <div class="sb-item"><span class="sb-key">Runtime</span><span class="sb-val" id="iNode"><span class="sk"></span></span></div>
+    <div class="sb-item"><span class="sb-key">Database</span><span class="sb-val" id="iDB"><span class="sk"></span></span></div>
+    <div class="sb-item"><span class="sb-key">Language</span><span class="sb-val" id="iLang"><span class="sk" style="min-width:24px"></span></span></div>
+    <div class="sb-item"><span class="sb-key">FCA</span><span class="sb-val" id="iFCA"><span class="sk"></span></span></div>
+    <div class="sb-item"><span class="sb-key">Events</span><span class="sb-val" id="iEvt"><span class="sk" style="min-width:20px"></span></span></div>
+    <div class="sb-item"><span class="sb-key">Status</span><span class="sb-val" id="iStatus"><span class="sk"></span></span></div>
+  </div>
+
+  <!-- INFO PILLS -->
+  <div class="info-grid rv">
+    <div class="info-pill">
+      <div class="pill-dot"></div>
+      <div><span class="pill-key">Prefix</span><span class="pill-val" id="pPrefix">—</span></div>
+    </div>
+    <div class="info-pill">
+      <div class="pill-dot" style="background:var(--c);box-shadow:0 0 8px var(--c)"></div>
+      <div><span class="pill-key">Bot Version</span><span class="pill-val" id="pVer">—</span></div>
+    </div>
+    <div class="info-pill">
+      <div class="pill-dot" style="background:var(--gold);box-shadow:0 0 8px var(--gold)"></div>
+      <div><span class="pill-key">Node.js</span><span class="pill-val" id="pNode">—</span></div>
+    </div>
+    <div class="info-pill">
+      <div class="pill-dot" style="background:var(--pink);box-shadow:0 0 8px var(--pink)"></div>
+      <div><span class="pill-key">Database</span><span class="pill-val" id="pDB">—</span></div>
+    </div>
+    <div class="info-pill">
+      <div class="pill-dot" style="background:var(--p2);box-shadow:0 0 8px var(--p2)"></div>
+      <div><span class="pill-key">Language</span><span class="pill-val" id="pLang">—</span></div>
+    </div>
+    <div class="info-pill">
+      <div class="pill-dot" style="background:var(--c);box-shadow:0 0 8px var(--c)"></div>
+      <div><span class="pill-key">FCA Version</span><span class="pill-val" id="pFCA">—</span></div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="sec-label rv">Features</div>
+  <div class="feat-grid">
+    <div class="feat-card rv">
+      <span class="feat-emo">🧠</span>
+      <h3>AI & GPT Suite</h3>
+      <p>ChatGPT, Midjourney, image generation, translation — pure intelligence in any Messenger chat.</p>
+    </div>
+    <div class="feat-card rv">
+      <span class="feat-emo">🛡️</span>
+      <h3>6-Tier Permission System</h3>
+      <p>Creator, Dev, Admin Bot, Premium, VIP, Group Admin — complete granular role control.</p>
+    </div>
+    <div class="feat-card rv">
+      <span class="feat-emo">🎨</span>
+      <h3>Canvas Welcome Cards</h3>
+      <p>Stunning canvas-rendered welcome & leave images sent automatically when members join.</p>
+    </div>
+    <div class="feat-card rv">
+      <span class="feat-emo">📥</span>
+      <h3>Media Downloader</h3>
+      <p>TikTok, YouTube, Facebook, Instagram — download and deliver media directly to any chat.</p>
+    </div>
+    <div class="feat-card rv">
+      <span class="feat-emo">♻️</span>
+      <h3>Auto-Heal Core</h3>
+      <p>Exponential-backoff crash recovery. Bot is back online within seconds, not minutes.</p>
+    </div>
+    <div class="feat-card rv">
+      <span class="feat-emo">🌐</span>
+      <h3>Custom FCA Engine</h3>
+      <p>Patched fca-azadx69x: stable MQTT listener, reconnect logic, full message parsing.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="rv">
+    <div>
+      Made by <a href="https://github.com/ncazad" target="_blank">Azadx69x</a>
+      &nbsp;·&nbsp;
+      Based on <a href="https://github.com/ncazad/X69X-BOT-V3" target="_blank">X69X BOT V3</a>
+    </div>
+    <div style="font-size:12px;color:#334155;margin-top:6px">© 2026 X69X BOT V3 — All rights reserved</div>
+  </footer>
+
+</div>
+
+<script>
+/* ── PARTICLES ── */
+(function(){
+  const pc = document.getElementById('particles');
+  const colors = ['#7c3aed','#a855f7','#06b6d4','#ec4899','#10b981','#f59e0b','#818cf8'];
+  for(let i=0;i<55;i++){
+    const p=document.createElement('div');
+    p.className='pt';
+    const sz=2+Math.random()*4;
+    const col=colors[Math.floor(Math.random()*colors.length)];
+    p.style.cssText=`
+      width:${sz}px;height:${sz}px;
+      left:${Math.random()*100}%;
+      background:${col};
+      box-shadow:0 0 ${sz*3}px ${col};
+      animation-duration:${12+Math.random()*18}s;
+      animation-delay:${Math.random()*16}s;
+    `;
+    pc.appendChild(p);
+  }
+
+  const sc = document.getElementById('stars');
+  for(let i=0;i<8;i++){
+    const s=document.createElement('div');
+    s.className='star';
+    s.style.cssText=`
+      left:${5+Math.random()*90}%;
+      animation-duration:${6+Math.random()*10}s;
+      animation-delay:${Math.random()*14}s;
+      opacity:0;
+    `;
+    sc.appendChild(s);
+  }
+})();
+
+/* ── REVEAL ON SCROLL ── */
+const rv = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in') });
+},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv').forEach(el => rv.observe(el));
+
+/* ── UPTIME FORMAT ── */
+function fmtUp(s){
+  if(!s && s!==0) return '—';
+  const h=Math.floor(s/3600),m=Math.floor((s%3600)/60);
+  if(h>0) return h+'h '+m+'m';
+  if(m>0) return m+'m';
+  return Math.floor(s)+'s';
+}
+function fmtNum(n){ return n>=1000?(n/1000).toFixed(1)+'k':String(n) }
+
+/* ── SET ONLINE/OFFLINE STATE ── */
+function setStatus(on){
+  const badge=document.getElementById('navBadge');
+  const dot=document.getElementById('navDot');
+  const txt=document.getElementById('navTxt');
+  const avs=document.getElementById('avatarStatus');
+  const is=document.getElementById('iStatus');
+  if(on){
+    badge.style.cssText='background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.4);color:#6ee7b7';
+    dot.style.cssText='width:7px;height:7px;border-radius:50%;background:#10b981;box-shadow:0 0 10px #10b981';
+    txt.textContent='ONLINE';
+    avs.style.cssText='position:absolute;bottom:8px;right:8px;width:18px;height:18px;border-radius:50%;border:3px solid var(--bg);background:#10b981;box-shadow:0 0 14px #10b981';
+    if(is) is.textContent='● ACTIVE';
+    if(is) is.style.color='#10b981';
+  } else {
+    badge.style.cssText='background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.35);color:#fca5a5';
+    dot.style.cssText='width:7px;height:7px;border-radius:50%;background:#ef4444;box-shadow:0 0 10px #ef4444';
+    txt.textContent='OFFLINE';
+    avs.style.cssText='position:absolute;bottom:8px;right:8px;width:18px;height:18px;border-radius:50%;border:3px solid var(--bg);background:#ef4444;box-shadow:0 0 14px #ef4444';
+    if(is) is.textContent='○ OFFLINE';
+    if(is) is.style.color='#ef4444';
+  }
+}
+
+/* ── FETCH STATS ── */
+async function loadStats(){
+  try{
+    const r=await fetch('/stats');
+    const d=await r.json();
+
+    /* Stats grid */
+    document.getElementById('sGroups').textContent = fmtNum(d.totalThread||0);
+    document.getElementById('sUsers').textContent  = fmtNum(d.totalUser||0);
+    document.getElementById('sCmds').textContent   = d.commandsCount>0 ? fmtNum(d.commandsCount) : '0';
+    document.getElementById('sUp').textContent     = fmtUp(d.uptimeSecond);
+
+    /* Status bar */
+    document.getElementById('iPrefix').textContent = d.prefix||')';
+    document.getElementById('iVer').textContent    = 'v'+(d.botVersion||'?');
+    document.getElementById('iNode').textContent   = d.nodeVersion||'Node.js';
+    document.getElementById('iDB').textContent     = d.dbType||'MongoDB';
+    document.getElementById('iLang').textContent   = (d.language||'en').toUpperCase();
+    document.getElementById('iFCA').textContent    = 'v'+(d.fcaVersion||'?');
+    document.getElementById('iEvt').textContent    = d.eventsCount||0;
+
+    /* Info pills */
+    document.getElementById('pPrefix').textContent = d.prefix||')';
+    document.getElementById('pVer').textContent    = 'v'+(d.botVersion||'?');
+    document.getElementById('pNode').textContent   = d.nodeVersion||'Node.js';
+    document.getElementById('pDB').textContent     = d.dbType||'MongoDB';
+    document.getElementById('pLang').textContent   = (d.language||'en').toUpperCase();
+    document.getElementById('pFCA').textContent    = 'v'+(d.fcaVersion||'?');
+
+    /* Hero title from real bot name */
+    if(d.nameBot){
+      document.getElementById('heroTitle').textContent = d.nameBot;
+      document.getElementById('brandName').textContent = d.nameBot;
+      document.title = d.nameBot;
+    }
+
+    setStatus(d.isConnected);
+  } catch(e){
+    setStatus(false);
+    ['sGroups','sUsers','sCmds','sUp'].forEach(id=>{
+      document.getElementById(id).textContent='!';
+    });
+  }
+}
+
+loadStats();
+setInterval(loadStats,30000);
+
+/* ── SESSION SUBMIT ── */
+async function sendSession(){
+  const key=document.getElementById('keyInp').value.trim();
+  const state=document.getElementById('stateInp').value.trim();
+  const msg=document.getElementById('scMsg');
+  const btn=document.getElementById('scBtn');
+  const ico=document.getElementById('scIco');
+  const lbl=document.getElementById('scLbl');
+
+  if(!key){ showMsg('err','⚠️ Admin key required'); return }
+  if(!state){ showMsg('err','⚠️ Facebook session JSON required'); return }
+  try{ JSON.parse(state) }
+  catch(e){ showMsg('err','⚠️ Invalid JSON — must be a valid fbstate array'); return }
+
+  btn.disabled=true; ico.textContent='⏳'; lbl.textContent='Saving...';
+  msg.style.display='none';
+
+  try{
+    const res=await fetch('/api/setup-session',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({fbstate:state,adminKey:key})
+    });
+    const data=await res.json();
+    if(data.status==='success'){
+      showMsg('ok','✅ '+data.message);
+      ico.textContent='✅'; lbl.textContent='Saved! Restarting bot...';
+      setTimeout(()=>location.reload(),4000);
+    } else {
+      showMsg('err','❌ '+data.message);
+      btn.disabled=false; ico.textContent='💾'; lbl.textContent='Save Session & Restart Bot';
+    }
+  } catch(e){
+    showMsg('err','❌ Network error: '+e.message);
+    btn.disabled=false; ico.textContent='💾'; lbl.textContent='Save Session & Restart Bot';
+  }
+}
+
+function showMsg(t,txt){
+  const m=document.getElementById('scMsg');
+  m.className='sc-msg '+(t==='ok'?'ok':'err');
+  m.textContent=txt; m.style.display='block';
+}
+</script>
+</body>
+</html>

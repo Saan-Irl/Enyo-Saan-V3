@@ -1,0 +1,47 @@
+const axios = require("axios");
+
+module.exports = {
+  config: {
+    name: "ss",
+    version: "3.0",
+    author: "𝐒𝐈𝐀𝐌 𝐀𝐇𝐌𝐄𝐃 𝐒𝐀𝐀𝐍",
+    countDown: 5,
+    role: 0,
+    description: "Capture website screenshot (PC or mobile mode)",
+    category: "tools",
+    guide: "{pn} <url> [-mobile | -pc]"
+  },
+
+  onStart: async function ({ api, event, args }) {
+    const { threadID, messageID } = event;
+
+    if (args.length === 0) {
+      return api.sendMessage("❌ Please provide a website URL.\nExample: /ss google.com -mobile", threadID, messageID);
+    }
+
+    let url = args[0];
+    let mode = "pc";
+
+    if (args.length > 1) {
+      const flag = args[1].toLowerCase();
+      if (flag === "-mobile" || flag === "mobile") {
+        mode = "mobile";
+      } else if (flag === "-pc" || flag === "pc") {
+        mode = "pc";
+      }
+    }
+
+    const apiUrl = `https://xalman-apis.vercel.app/api/screenshot?url=${encodeURIComponent(url)}&mode=${mode}`;
+
+    try {
+      const stream = await global.utils.getStreamFromURL(apiUrl);
+      return api.sendMessage({
+        body: `📸 Screenshot`,
+        attachment: stream
+      }, threadID, messageID);
+    } catch (error) {
+      console.error(error);
+      return api.sendMessage(`❌ Failed to capture screenshot. Please check the URL and try again.`, threadID, messageID);
+    }
+  }
+};
