@@ -1,6 +1,6 @@
-<div align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D001A,50:7000FF,100:00D9FF&height=280&section=header&text=GOAT-BOT-UPDATED&fontSize=76&fontColor=FFFFFF&animation=fadeIn&fontAlignY=38&desc=⚡%20Rebuilt.%20Refined.%20Reloaded.%20⚡&descSize=22&descAlignY=62&descColor=FFD700" width="100%"/><br><br><img src="https://i.ibb.co/TB9Xmrx8/a3f874c3d999.jpg" width="1942" height="809" alt="GOAT-BOT-UPDATED"><br><br>
+<div align="center"><img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D001A,50:7000FF,100:00D9FF&height=280&section=header&text=GOAT-BOT-UPDATED&fontSize=76&fontColor=FFFFFF&animation=fadeIn&fontAlignY=38&desc=⚡%20Rebuilt.%20Refined.%20Reloaded.%20⚡&descSize=22&descAlignY=62&descColor=FFD700" width="100%"/><br><br><img src="https://i.ibb.co/TB9Xmrx8/a3f874c3d999.jpg" width="1942" height="809" alt="SIAM-AHMED-SAAN"><br><br>
 
-<img src="https://readme-typing-svg.demolab.com?font=Orbitron&weight=800&size=32&duration=2800&pause=600&color=9D4EDD&center=true&vCenter=true&width=850&lines=🔥+GOAT-BOT-UPDATED;⚡+Next-Generation+Messenger+Bot;💎+Premium+Automation+System;🚀+Fast+%7C+Stable+%7C+Powerful;🛡️+Built+For+Performance" alt="Typing Animation"><br><br>
+<img src="https://readme-typing-svg.demolab.com?font=Orbitron&weight=800&size=32&duration=2800&pause=600&color=9D4EDD&center=true&vCenter=true&width=850&lines=🔥+SIAM-AHMED-SAAN;⚡+Next-Generation+Messenger+Bot;💎+Premium+Automation+System;🚀+Fast+%7C+Stable+%7C+Powerful;🛡️+Built+For+Performance" alt="Typing Animation"><br><br>
 
 <img src="https://komarev.com/ghpvc/?username=Saan-Irl&label=PROFILE+VIEWS&color=7000FF&style=for-the-badge&abbreviated=true" alt="Profile Views"><br><br>
 
