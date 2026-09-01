@@ -16,7 +16,7 @@
 <img src="https://img.shields.io/badge/LICENSE-MIT-FFD700?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License">
 </a></div>---
 
-<div align="center">🐐 GOAT-BOT-UPDATED
+<div align="center">🐐 SAAN-GOAT-BOT-UPDATED
 
 "Next-Generation Facebook Messenger Automation"
 
@@ -26,7 +26,7 @@ Powerful • Modular • Fast • Customizable
 
 ✨ About
 
-GOAT-BOT-UPDATED is a powerful and modular Facebook Messenger automation bot designed for performance, flexibility and easy customization.
+SAAN-GOAT-BOT-UPDATED is a powerful and modular Facebook Messenger automation bot designed for performance, flexibility and easy customization.
 
 The project provides a command-based architecture with support for automation, AI, media processing, user management, group management and premium features.
 
