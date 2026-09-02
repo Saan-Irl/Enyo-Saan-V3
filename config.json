@@ -17,8 +17,8 @@
     "ignoreCommand": []
   },
   "typingIndicator": {
-    "enable": false,
-    "duration": 1000
+    "enable": true,
+    "duration": 2000
   },
   "adminBot": [
     "100075454605535"
@@ -64,14 +64,14 @@
     "enable": true,
     "notes": "if enable is set to false, NO ONE needs a prefix to use commands (global no-prefix mode). Leave this true and use adminUsePrefix below instead for admin-only no-prefix.",
     "adminUsePrefix": {
-      "enable": true,
+      "enable": false,
       "notes": "set enable to false to let bot admins (and specificUids below) use commands WITHOUT typing the prefix. Set to true to require the prefix from everyone as normal.",
       "specificUids": []
     }
   },
   "database": {
-    "type": "sqlite",
-    "uriMongodb": "",
+    "type": "mongodb",
+    "uriMongodb": "mongodb+srv://saan:637376383@cluster0.kdcq3vl.mongodb.net/bot18?appName=Cluster0",
     "autoSyncWhenStart": false,
     "autoRefreshThreadInfoFirstTime": true,
     "notes": "(1) type selects 'json' or 'sqlite' or 'mongodb'. If you choose mongodb, enter uri connect mongodb in the uriMongodb section, instructions to get uri connect mongodb at: https://youtu.be/z1f9urHW5xY. I recommend using 'mongodb' or 'sqlite', json is not recommended because it is not stable. (2) when you set autoSyncWhenStart to true, the bot will automatically synchronize the data in the database when starting the bot, this will make the bot start slower. (3) when you set autoRefreshThreadInfoFirstTime to true, the bot will automatically refresh the thread information when get first message from the thread since starting the bot"
@@ -184,4 +184,4 @@
     "autoReconnect": true,
     "notes": "Document here: https://github.com/ntkhang03/fb-chat-api/blob/master/DOCS.md#apisetoptionsoptions "
   }
-  }
+    }
